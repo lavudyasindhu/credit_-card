@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>House Price Predictor | Linear Regression ML App</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAVIGATION ===================== -->
+  <header class="navbar">
+    <div class="navbar-content">
+      <div class="brand">
+        <span class="brand-icon">📈</span>
+        <span class="brand-name">Linear Regression Predictor</span>
+      </div>
+      <div class="status-pill" id="apiStatusPill">
+        <span class="dot" id="apiStatusDot"></span>
+        <span id="apiStatusText">Checking API...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===================== TITLE + DESCRIPTION ===================== -->
+    <section class="hero">
+      <h1>House Price Predictor</h1>
+      <p class="subtitle">
+        A full-stack Machine Learning demo: a Linear Regression model trained on
+        house size (square feet) vs. price data, served through a FastAPI backend
+        and this plain HTML/CSS/JavaScript frontend.
+      </p>
+    </section>
+
+    <div class="grid">
+
+      <!-- ===================== PREDICTION CARD ===================== -->
+      <section class="card">
+        <h2>🔮 Make a Prediction</h2>
+        <p class="card-description">
+          Enter a house size in square feet to predict its estimated price.
+        </p>
+
+        <div class="input-group">
+          <label for="featureInput">House Size (Square Feet)</label>
+          <input
+            type="number"
+            id="featureInput"
+            placeholder="e.g. 1500"
+            min="1"
+            step="1"
+          />
+        </div>
+
+        <button id="predictBtn" class="btn-primary">Predict Price</button>
+
+        <!-- Loading indicator -->
+        <div id="loadingIndicator" class="loading hidden">
+          <span class="spinner"></span> Predicting...
+        </div>
+
+        <!-- Error message area -->
+        <div id="errorBox" class="error-box hidden"></div>
+
+        <!-- Prediction result card -->
+        <div id="resultCard" class="result-card hidden">
+          <span class="result-label">Predicted Price</span>
+          <span id="resultValue" class="result-value">--</span>
+        </div>
+      </section>
+
+      <!-- ===================== MODEL PERFORMANCE CARD ===================== -->
+      <section class="card">
+        <h2>📊 Model Performance</h2>
+        <p class="card-description">
+          Evaluation metrics from the last time the model was trained.
+        </p>
+
+        <button id="trainBtn" class="btn-secondary">Retrain Model</button>
+
+        <div id="metricsLoading" class="loading hidden">
+          <span class="spinner"></span> Training model...
+        </div>
+
+        <table class="metrics-table" id="metricsTable">
+          <tbody>
+            <tr>
+              <td>R² Score</td>
+              <td id="metricR2">--</td>
+            </tr>
+            <tr>
+              <td>Mean Absolute Error (MAE)</td>
+              <td id="metricMAE">--</td>
+            </tr>
+            <tr>
+              <td>Mean Squared Error (MSE)</td>
+              <td id="metricMSE">--</td>
+            </tr>
+            <tr>
+              <td>Root Mean Squared Error (RMSE)</td>
+              <td id="metricRMSE">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===================== DATASET INFO CARD ===================== -->
+      <section class="card wide-card">
+        <h2>🗂️ Dataset Information</h2>
+        <p class="card-description">
+          Basic statistics about the dataset currently loaded on the backend.
+        </p>
+
+        <table class="metrics-table" id="datasetTable">
+          <tbody>
+            <tr>
+              <td>Total Records</td>
+              <td id="dataTotalRecords">--</td>
+            </tr>
+            <tr>
+              <td>Feature Column (Input)</td>
+              <td id="dataFeatureColumn">--</td>
+            </tr>
+            <tr>
+              <td>Target Column (Output)</td>
+              <td id="dataTargetColumn">--</td>
+            </tr>
+            <tr>
+              <td>Feature Range (min / mean / max)</td>
+              <td id="dataFeatureRange">--</td>
+            </tr>
+            <tr>
+              <td>Target Range (min / mean / max)</td>
+              <td id="dataTargetRange">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Built with FastAPI + Scikit-learn + Vanilla JavaScript · College ML Project Demo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
