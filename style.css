@@ -1,0 +1,322 @@
+/* ==========================================================================
+   style.css
+   Design tokens:
+     Background : #F2F4F3 (cool, quiet paper)
+     Surface    : #FFFFFF
+     Ink        : #1C2321 (near-black, warm)
+     Muted ink  : #5B6663
+     Accent     : #0D5C56 (deep teal - primary actions)
+     Data accent: #C2790C (amber - highlighted numbers/results)
+     Border     : rgba(28,35,33,0.12)
+   Type:
+     Display / headings : "Fraunces" (serif, distinctive)
+     Body / UI          : "Inter" (sans-serif)
+     Numeric data        : "IBM Plex Mono" (monospace - metrics, prices)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #F2F4F3;
+  --surface: #FFFFFF;
+  --ink: #1C2321;
+  --muted: #5B6663;
+  --accent: #0D5C56;
+  --accent-dark: #094440;
+  --data: #C2790C;
+  --border: rgba(28, 35, 33, 0.12);
+  --error: #B3261E;
+  --error-bg: #FBEAE9;
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------- Navbar ---------------------------- */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-content {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.brand-icon {
+  font-size: 1.3rem;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C7CCC9;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.dot.online { background: #1E8F5F; }
+.dot.offline { background: var(--error); }
+
+/* ---------------------------- Layout ---------------------------- */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.hero {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin: 0;
+  max-width: 60ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.wide-card {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+}
+
+/* ---------------------------- Cards ---------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  border-top: 3px solid var(--accent);
+}
+
+.card h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 0 6px;
+}
+
+.card-description {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 18px;
+}
+
+/* ---------------------------- Form elements ---------------------------- */
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.input-group input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  background: var(--surface);
+}
+
+.btn-primary, .btn-secondary {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:active { transform: scale(0.99); }
+.btn-primary:disabled { background: #A7B4B1; cursor: not-allowed; }
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn-secondary:hover { background: #EAF2F1; }
+.btn-secondary:disabled { color: #A7B4B1; border-color: #C7CCC9; cursor: not-allowed; }
+
+/* ---------------------------- Loading ---------------------------- */
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------------------------- Result / error ---------------------------- */
+.result-card {
+  margin-top: 18px;
+  padding: 18px;
+  background: #FBF3E7;
+  border: 1px solid #EFD9AE;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.result-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--data);
+}
+
+.error-box {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--error-bg);
+  border: 1px solid #EFC6C3;
+  color: var(--error);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------------------------- Tables ---------------------------- */
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 0.92rem;
+}
+
+.metrics-table td {
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.metrics-table td:first-child {
+  color: var(--muted);
+}
+
+.metrics-table td:last-child {
+  text-align: right;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+
+.metrics-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------------------------- Footer ---------------------------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 24px;
+}
